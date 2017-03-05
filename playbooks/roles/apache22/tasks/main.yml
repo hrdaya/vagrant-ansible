@@ -1,0 +1,4 @@
+# file: apache22/tasks/main.yml
+
+- include: install.yml
+- include: config.yml

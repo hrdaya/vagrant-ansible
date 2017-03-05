@@ -1,0 +1,10 @@
+
+; Error handling and logging
+error_reporting = {{ (target=='development') | ternary(-1, 0) }}
+display_errors = {{ (target=='development') | ternary('On', 'Off') }}
+display_startup_errors = {{ (target=='development') | ternary('On', 'Off') }}
+log_errors = On
+track_errors = {{ (target=='development') | ternary('On', 'Off') }}
+html_errors = {{ (target=='development') | ternary('On', 'Off') }}
+log_errors_max_len = 4096
+error_log = "{{ log_folda }}{{ php_error_log }}"

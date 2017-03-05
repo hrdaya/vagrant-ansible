@@ -1,0 +1,4 @@
+# file: php/tasks/main.yml
+
+- include: install.yml
+- include: logrotate.yml

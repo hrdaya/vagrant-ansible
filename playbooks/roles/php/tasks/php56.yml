@@ -1,0 +1,17 @@
+# file: php/tasks/php56.yml
+
+- name: PHP | php/tasks/php56.yml(PHP 5.6)
+  yum:
+    name      : "{{ item }}"
+    state     : installed
+    enablerepo: "remi,remi-php56,epel"
+  with_items: "{{ php_modules }}"
+  notify    : restart httpd
+
+- name: PHP | php/tasks/php56.yml(PHP 5.6 DEV)
+  yum:
+    name      : "{{ item }}"
+    state     : installed
+    enablerepo: "remi,remi-php56,epel"
+  with_items: "{{ php_dev_modules }}"
+  notify    : restart httpd

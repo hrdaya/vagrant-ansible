@@ -1,0 +1,10 @@
+# file: php/tasks/logrotate.yml
+
+- name: PHP | php/tasks/logrotate.yml
+  template:
+    src : php.logrotate.j2
+    dest: /etc/logrotate.d/php
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644

@@ -1,0 +1,9 @@
+# files: os/tasks/locale.yml
+
+- name: LOCALE | os/tasks/locale.yml(rewite /etc/sysconfig/i18n)
+  lineinfile:
+    dest    : /etc/sysconfig/i18n
+    state   : present
+    backrefs: yes
+    regexp  : '^LANG=\"en_US.UTF-8\"'
+    line    : 'LANG="{{ locale }}"'

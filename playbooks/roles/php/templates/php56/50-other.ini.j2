@@ -1,0 +1,24 @@
+; Language Options
+open_basedir = "{{ document_root }}"
+max_execution_time = 30
+memory_limit = 128M
+
+; Data Handling
+post_max_size = 8M
+default_charset = "{{ charset }}"
+
+; Paths and Directories
+include_path = ".:"
+sys_temp_dir = "{{ tmp_folda }}"
+
+; File Uploads
+upload_tmp_dir = "{{ tmp_folda }}"
+upload_max_filesize = 2M
+max_file_uploads = 20
+
+; Module Settings
+[Date]
+date.timezone = "{{ timezone }}"
+
+[intl]
+intl.default_locale = {{ locale }}

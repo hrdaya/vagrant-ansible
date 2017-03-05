@@ -1,0 +1,21 @@
+# file: os/tasks/ntp.yml
+
+- name: NTP | os/tasks/ntp.yml(install)
+  yum:
+    name : ntp
+    state: installed
+
+- name: NTP | os/tasks/ntp.yml(copy ntp.conf)
+  template:
+    src : ntp.conf.j2
+    dest: /etc/ntp.conf
+    backup: yes
+  notify  : restart ntpd
+
+- name: NTP | os/tasks/ntp.yml(check started)
+  shell   : "service ntpd status | grep -q stop; echo $?"
+  register: result
+
+- name: NTP | os/tasks/ntp.yml(ntpdate)
+  command: ntpdate {{ ntp_servers.0 }}
+  when   : result.stdout == "0"

@@ -1,0 +1,13 @@
+[os]
+localhost
+
+[webservers]
+localhost
+
+[development:children]
+os
+webservers
+
+[development:vars]
+ansible_connection=local
+target=development

@@ -1,0 +1,37 @@
+# file: php/tasks/install.yml
+
+- name: PHP | php/tasks/install.yml(check version)
+  shell      : php -v | grep -q 'PHP {{ php_version }}'; echo $?
+  register   : php_v
+
+- name: PHP | php/tasks/install.yml(uninstall)
+  yum:
+    name      : "{{ item }}"
+    state     : removed
+  with_items: "{{ php_modules }}"
+  when      : php_v.stdout != '0'
+
+- name: PHP | php/tasks/install.yml(uninstall dev)
+  yum:
+    name      : "{{ item }}"
+    state     : removed
+  with_items: "{{ php_dev_modules }}"
+  when: php_v.stdout != '0'
+
+- name: PHP | php/tasks/install.yml(remove directory)
+  file:
+    path: "/etc/php.d"
+    state: absent
+  when: php_v.stdout != '0'
+
+- name: PHP | php/tasks/install.yml(remove file)
+  file:
+    path: "/etc/php.ini"
+    state: absent
+  when: php_v.stdout != '0'
+
+- include: php56.yml
+  when: php_version == "5.6"
+- include: php56-ini.yml
+  when: php_version == "5.6"
+

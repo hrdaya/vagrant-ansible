@@ -1,0 +1,26 @@
+# file: group_vars/webservers.yml
+
+php_modules:
+  - php
+  - php-cli
+  - php-common
+  - php-xml
+  - php-opcache
+  - php-pdo
+  - php-pgsql
+  - php-mcrypt
+  - php-mbstring
+  - php-intl
+  - php-tokenizer
+  - libwebp
+  - gd-last
+  - php-gd
+  - php-gmp
+
+php_dev_modules:
+  - php-pecl-xdebug
+
+public_folda : "{{ document_root }}"
+tmp_folda    : "{{ document_root }}/storage/tmp"
+log_folda    : "{{ document_root }}/storage/logs"
+php_error_log: "/php_errors.log"

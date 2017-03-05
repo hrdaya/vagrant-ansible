@@ -1,0 +1,8 @@
+# file: handlers/ntpd.yml
+
+# Apacheの再起動
+- name: restart ntpd
+  service:
+    name : ntpd
+    state: restarted
+    enabled: yes

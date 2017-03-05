@@ -1,0 +1,28 @@
+# file: apache22/tasks/install.yml
+
+- name: Apache22 | apache22/tasks/install.yml(install)
+  yum:
+    name : httpd
+    state: installed
+
+- name: Apache22 | apache22/tasks/install.yml(enabled)
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Apache22 | apache22/tasks/install.yml(create directory)
+  file:
+    path : /var/dummy
+    state: directory
+    owner: root
+    group: root
+    mode : 0755
+
+- name: Apache22 | apache22/tasks/install.yml(create index.html)
+  template:
+    src   : index.not-found.html.j2
+    dest  : /var/dummy/index.html
+    owner : root
+    group : root
+    mode  : 0644

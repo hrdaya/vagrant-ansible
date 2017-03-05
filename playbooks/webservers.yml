@@ -1,0 +1,8 @@
+# file: webserver.yml
+
+- name  : Webサーバ
+  hosts : webservers
+  become: yes
+  roles :
+    - role: apache22
+    - role: php

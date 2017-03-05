@@ -1,0 +1,8 @@
+# file: os/tasks/main.yml
+
+- include: selinux.yml
+- include: yum_repos.yml
+- include: fastestmirror.yml
+#- include: locale.yml
+#- include: timezone.yml
+- include: ntp.yml

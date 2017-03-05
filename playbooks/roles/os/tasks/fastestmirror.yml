@@ -1,0 +1,6 @@
+# files: os/tasks/fastestmirror.yml
+
+- name: FASTESTMIRROR | os/tasks/fastestmirror.yml(add line /etc/sysconfig/i18n)
+  lineinfile:
+    dest: /etc/yum/pluginconf.d/fastestmirror.conf
+    line: 'include_only=.jp'

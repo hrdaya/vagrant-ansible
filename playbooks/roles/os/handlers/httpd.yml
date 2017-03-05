@@ -1,0 +1,8 @@
+# file: handlers/httpd.yml
+
+# Apacheの再起動
+- name: restart httpd
+  service:
+    name : httpd
+    state: restarted
+    enabled: yes

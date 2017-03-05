@@ -1,0 +1,32 @@
+
+HostnameLookups On
+NameVirtualHost *:80
+
+# セキュリティ対策
+<VirtualHost *:80>
+  ServerName dummy.example.jp:80
+  DocumentRoot {{ document_root }}/dummy
+  ErrorDocument 404 /index.html
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName {{ hostname }}:80
+    DocumentRoot {{ public_folda }}
+
+    ErrorLog "|/usr/sbin/rotatelogs {{ log_folda }}/error_%Y%m%d.log 86400"
+    CustomLog "|/usr/sbin/rotatelogs {{ log_folda }}/access_%Y%m%d.log 86400" combined
+
+    <Directory {{ public_folda }}>
+{% if target=='development' %}
+        # 開発の時はサーバキャッシュを無効にする
+        EnableMMAP Off
+        EnableSendfile Off
+{% endif %}
+
+        AllowOverride All
+        Options -Indexes
+
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>

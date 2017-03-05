@@ -1,0 +1,51 @@
+# http://qiita.com/bezeklik/items/1c4145652661cf5b2271#httpoxy-%E5%AF%BE%E7%AD%96
+# http://d.hatena.ne.jp/sen-u/20131130/p1
+
+# バージョン情報を隠す
+ServerTokens Prod
+# TRACEメソッドの無効化（XST対策）
+TraceEnable Off
+
+# PHPのバージョンヘッダを削除
+Header unset X-Powered-By
+# ETagの削除(Last-Modifiedを使用)
+Header unset ETag
+
+# httpoxy 対策
+RequestHeader unset Proxy
+
+
+# クリックジャッキング対策
+Header append X-Frame-Options SAMEORIGIN
+# XSS攻撃を検知させる（検知したら実行させない）
+Header set X-XSS-Protection "1; mode=block"
+# IEにコンテンツの内容を解析させない（ファイルの内容からファイルの種類を決定させない）
+Header set X-Content-Type-Options nosniff
+# IEでダウンロードしたファイルを直接開かせない
+Header set X-Download-Options noopen
+# クロスドメイン制約
+Header set X-Permitted-Cross-Domain-Policies master-only
+
+{% if target!='development' %}
+# SSLの強要
+Header set Strict-Transport-Security: max-age=31536000; includeSubDomains
+{% endif %}
+
+# ドットから始まるファイル
+<Files ~ "^\.">
+  Order allow,deny
+  Deny from all
+  Satisfy All
+</Files>
+
+# ドットから始まるフォルダ
+<LocationMatch "/\..*">
+  Order deny,allow
+  Deny from all
+</LocationMatch>
+
+# 念の為
+<Directory "/var/www/html">
+  Order allow,deny
+  Deny from all
+</Directory>

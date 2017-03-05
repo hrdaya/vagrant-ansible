@@ -1,0 +1,41 @@
+# file: apache22/tasks/config.yml
+
+- name: Apache22 | apache22/tasks/config.yml(httpd.conf)
+  template:
+    src   : httpd.conf.j2
+    dest  : /etc/httpd/conf/httpd.conf
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd
+
+- name: Apache22 | apache22/tasks/config.yml(welcome.conf)
+  template:
+    src   : welcome.conf.j2
+    dest  : /etc/httpd/conf.d/welcome.conf
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd
+
+- name: Apache22 | apache22/tasks/config.yml(security.conf)
+  template:
+    src   : security.conf.j2
+    dest  : /etc/httpd/conf.d/security.conf
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd
+
+- name: Apache22 | apache22/tasks/config.yml(virtual-host.conf)
+  template:
+    src   : virtual-host.conf.j2
+    dest  : /etc/httpd/conf.d/virtual-host.conf
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd

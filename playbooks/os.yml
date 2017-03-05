@@ -1,0 +1,7 @@
+# file: os.yml
+
+- name  : OS
+  hosts : os
+  become: yes
+  roles :
+    - role: os

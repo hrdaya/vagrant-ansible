@@ -1,0 +1,10 @@
+# file: os/tasks/selinux.yml
+
+- name: SELINUX | os/tasks/selinux.yml(install libselinux-python)
+  yum:
+    name : libselinux-python
+    state: installed
+
+- name: SELINUX | os/tasks/selinux.yml(disabled SELinux)
+  selinux:
+    state: disabled

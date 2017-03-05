@@ -1,0 +1,51 @@
+# file: php/tasks/ini.yml
+
+- name: PHP | php/tasks/ini.yml(50-error.ini)
+  template:
+    src : php56/50-error.ini.j2
+    dest: /etc/php.d/50-error.ini
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd
+
+- name: PHP | php/tasks/ini.yml(50-mbstring.ini)
+  template:
+    src : php56/50-mbstring.ini.j2
+    dest: /etc/php.d/50-mbstring.ini
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd
+
+- name: PHP | php/tasks/ini.yml(50-opcache.ini)
+  template:
+    src : php56/50-opcache.ini.j2
+    dest: /etc/php.d/50-opcache.ini
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd
+
+- name: PHP | php/tasks/ini.yml(50-other.ini)
+  template:
+    src : php56/50-other.ini.j2
+    dest: /etc/php.d/50-other.ini
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd
+
+- name: PHP | php/tasks/ini.yml(50-xdebug.ini)
+  template:
+    src : php56/50-xdebug.ini.j2
+    dest: /etc/php.d/50-xdebug.ini
+    backup: yes
+    owner : root
+    group : root
+    mode  : 0644
+  notify: restart httpd

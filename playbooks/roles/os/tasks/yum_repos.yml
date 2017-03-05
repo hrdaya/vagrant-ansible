@@ -1,0 +1,17 @@
+# file: os/tasks/yum_repos.yml
+
+- name: YUM REPOS | os/tasks/yum_repos.yml(epel)
+  yum:
+    name : epel-release
+    state: installed
+
+- name: YUM REPOS | os/tasks/yum_repos.yml(remi)
+  yum:
+    name : http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+    state: installed
+
+#- name: YUM REPOS | os/tasks/yum_repos.yml(disabled repos)
+#  replace: dest=/etc/yum.repos.d/{{ item }} regexp="enabled *= *1" replace="enabled=0"
+#  with_items:
+#    - epel.repo
+#    - remi.repo
