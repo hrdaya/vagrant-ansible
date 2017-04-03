@@ -31,8 +31,8 @@ Vagrant.configure("2") do |config|
   config.vm.network :private_network, ip: params["ip_address"]
 
   # ポートの設定
-  config.vm.network :forwarded_port, guest: 80, host: params["httpPort"], id: "http", auto_correct: true
-  config.vm.network :forwarded_port, guest: 22, host: params["sshPort"],  id: "ssh" , auto_correct: true
+  config.vm.network :forwarded_port, guest: 80, host: params["httpPort"], id: "http", auto_correct: true, host_ip: "127.0.0.1"
+  config.vm.network :forwarded_port, guest: 22, host: params["sshPort"],  id: "ssh" , auto_correct: true, host_ip: "127.0.0.1"
 
   # Proxyの設定
 #  if Vagrant.has_plugin?("vagrant-proxyconf")
